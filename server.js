@@ -23,9 +23,9 @@ app.post('/api/createUser', (request, res) => {
       });
 });
 app.put('/api/updateUser', (request, ress) => {
-    User.update({_id: request.body.id},
+    User.update({_id: request.body._id},
         {$set: request.body},
-        { multi: true },
+        { multi: true, upsert: true },
         function(err, res) {
           console.log(res)
             if(err){
