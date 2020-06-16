@@ -37,16 +37,6 @@ app.put('/api/updateUser', (request, ress) => {
             }
         }
     );
-    // var chatRm = new User(request.body);
-    // chatRm.save((err, users) => {
-    //   console.log(err);
-    //   if (err){
-    //     res.status(500).send(null);
-    //   } else{
-    //     console.log(users);
-    //     res.send(users);
-    //   }
-    // });
 });
 
 app.get('/api/users', (request, ress) => { 
@@ -56,8 +46,13 @@ app.get('/api/users', (request, ress) => {
       });
 });
 
+app.delete('/api/delete/:id', (request, ress) => { 
+    User.deleteOne({_id: request.params.id}, function(err, res){
+        ress.send(res);
+    });
+});
 app.listen(3000, function() {
-    console.log('listening on 3000')
+    console.log('listening on 3000');
   })
 
 // mongoose.connect('mongodb://localhost:27017/users', {useNewUrlParser: true}).then(client => {
